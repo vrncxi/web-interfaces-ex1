@@ -29,11 +29,27 @@ const gradesData = {
             grade: 5
             
         },
+        {
+            courseId: 2,
+            studentId: 3,
+            grade: 0
+            
+        },
         
     ]
 }
 
-router.get('/', (req, res) => { res.json(gradesData)});
+//router.get('/', (req, res) => { res.json(gradesData)});
+router.get('/', (req, res) => {
+    const resultGrades = gradesData.grades.filter(item => {
+        if (item.grade != 0) {
+            return true;
+        }else{
+            return false;
+        }
+    });
+    res.json(resultGrades);
+});
 
 router.get('/students/:studId', (req, res) => {
     const resultStudent = gradesData.grades.filter(item => {
